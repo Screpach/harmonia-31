@@ -28,6 +28,10 @@ Updated: 2026-05-05
    - Risk: local green checks may diverge from GitHub-hosted environment behavior.
    - Mitigation: verify Actions run status after push using documented workflow.
 
+7. **Hit-testing uses synthetic cell-space bounds**
+   - Risk: current SATB selection mapping uses unit table-cell bounds, which may diverge from future pixel-precise notation engine geometry.
+   - Mitigation: bind adapter hit targets to shared layout coordinates when richer SVG/canvas notation adapters are introduced.
+
 ## Deferred private-data risks
 
 1. **Historical rule corpus unavailable (`awaiting-private-rule-pack`)**

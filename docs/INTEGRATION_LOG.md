@@ -149,3 +149,31 @@
 - Spelled-pitch identity remains explicit through note update command tests (`C#` vs `Db` not collapsed automatically).
 - Command handlers remain pure data transforms with no React/audio/render dependencies.
 - Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
+
+## 2026-05-05 — Integration Gate 06 (Prompts 26-29)
+
+### Scope audited
+- Layout contracts and score layout coordinate outputs.
+- Simple SATB renderer (`SatbGrid`) and notation adapter boundary (`NotationAdapter` + `simpleGridAdapter`).
+- Renderer-neutral hit testing (`hitTest`) and selected-state highlighting (`SelectionOverlay`).
+
+### Checks run
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview -- --host 127.0.0.1 --port 4173` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully and app root loads.
+- No new product feature scope added in this integration gate.
+
+### Repairs made
+- No code or contract repairs were required during this gate.
+- Added this gate entry and refreshed risk tracking for rendering/selection integration.
+
+### Contract integrity notes
+- Spelled-pitch identity remains intact in displayed synthetic notes (`C#4` and `Db4` both remain present in UI tests).
+- Selection interactions update UI state only; domain score data remains unchanged by click-selection behavior.
+- Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
