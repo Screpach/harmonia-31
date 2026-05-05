@@ -1,0 +1,24 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  background: #f7f7f8;
+  color: #1e1e1e;
+}
+
+.app-shell {
+  max-width: 48rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #dddddf;
+  border-radius: 0.5rem;
+}
+
+.status-note {
+  font-size: 0.95rem;
+  color: #444;
+}
