@@ -1,14 +1,12 @@
-import type { Project } from '../../domain/score/Project';
-import { createDemoProject } from './demoProject';
 import { simpleGridAdapter } from '../../render/adapters/simpleGridAdapter';
 import { hitTest, type HitTestTarget } from '../../render/hitTesting/hitTest';
 import { selectSelectedEventIds, useAppStore } from '../../state/useAppStore';
+import { useProjectStore } from '../../state/projectStore';
 import SelectionOverlay from './SelectionOverlay';
 import './SatbGrid.css';
 
-type SatbGridProps = { project?: Project };
-
-function SatbGrid({ project = createDemoProject() }: SatbGridProps) {
+function SatbGrid() {
+  const project = useProjectStore((state) => state.history.present);
   const view = simpleGridAdapter.render(project);
   const selectedEventIds = useAppStore(selectSelectedEventIds);
   const setSelectedEventIds = useAppStore((state) => state.setSelectedEventIds);
