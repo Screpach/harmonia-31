@@ -1,8 +1,10 @@
+import { useKeyboardShortcuts } from '../keyboard/useKeyboardShortcuts';
 import { selectInspectorVisible, useAppStore } from '../../state/useAppStore';
 import SettingsDebugPanel from '../settings/SettingsDebugPanel';
 import LayoutRegion from './LayoutRegion';
 
 function AppShell() {
+  useKeyboardShortcuts();
   const inspectorVisible = useAppStore(selectInspectorVisible);
 
   return (
