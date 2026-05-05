@@ -1,6 +1,10 @@
+import { selectInspectorVisible, useAppStore } from '../../state/useAppStore';
+import SettingsDebugPanel from '../settings/SettingsDebugPanel';
 import LayoutRegion from './LayoutRegion';
 
 function AppShell() {
+  const inspectorVisible = useAppStore(selectInspectorVisible);
+
   return (
     <div className="app-shell" aria-label="Harmonia 31 application shell">
       <header className="top-bar" aria-label="Top bar">
@@ -13,7 +17,9 @@ function AppShell() {
           className="region tools"
           title="Tools"
           description="Left panel placeholder for analysis, generation, and editing tools."
-        />
+        >
+          <SettingsDebugPanel />
+        </LayoutRegion>
 
         <main className="region workspace" aria-label="Workspace">
           <h2>Workspace</h2>
@@ -23,11 +29,18 @@ function AppShell() {
           </p>
         </main>
 
-        <LayoutRegion
-          className="region inspector"
-          title="Inspector"
-          description="Right panel placeholder for context details, validation, and selection metadata."
-        />
+        {inspectorVisible ? (
+          <LayoutRegion
+            className="region inspector"
+            title="Inspector"
+            description="Right panel placeholder for context details, validation, and selection metadata."
+          />
+        ) : (
+          <section className="region inspector" aria-label="Inspector hidden">
+            <h2>Inspector hidden</h2>
+            <p>Use Settings (debug) to show the inspector panel again.</p>
+          </section>
+        )}
       </div>
 
       <div className="footer-grid">
