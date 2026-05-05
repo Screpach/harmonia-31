@@ -4,30 +4,34 @@ Updated: 2026-05-05
 
 ## Current integration baseline risks
 
-1. **No domain model package yet**
-   - Risk: architecture boundary can be violated accidentally when domain code begins.
-   - Mitigation: next prompt should create explicit domain/adapters package structure and guardrails.
+1. **No implemented domain model yet**
+   - Risk: architecture boundary could be eroded when feature work begins.
+   - Mitigation: next prompts should introduce explicit domain primitives before complex UI features.
 
-2. **Single smoke test only**
-   - Risk: regressions may pass with limited test depth.
-   - Mitigation: add unit tests for domain primitives and adapter contracts in subsequent prompts.
+2. **UI settings store is intentionally minimal**
+   - Risk: contributors may start placing score or musical truth into `src/state/*`.
+   - Mitigation: enforce state-boundary lint rules and add code-review checks for domain ownership.
 
-3. **Dependency vulnerability warnings**
-   - Risk: `npm audit` reports moderate vulnerabilities in transitive dependencies.
-   - Mitigation: review and remediate during dependency upgrade prompt; avoid forced major upgrades without compatibility checks.
+3. **Smoke-heavy test mix**
+   - Risk: high-level rendering checks may miss deeper regressions.
+   - Mitigation: add focused unit tests for domain primitives, adapter contracts, and selector/action invariants.
 
-4. **CI validated locally only in this environment**
-   - Risk: GitHub-hosted run may reveal environment-specific issues.
-   - Mitigation: verify Actions run after push using `docs/DEVELOPMENT_COMMANDS.md` procedure.
+4. **Dependency vulnerability warnings**
+   - Risk: `npm audit` still reports moderate transitive vulnerabilities.
+   - Mitigation: schedule targeted dependency maintenance prompt; avoid forcing major upgrades blindly.
+
+5. **Local CI parity not yet proven on hosted runners**
+   - Risk: GitHub-hosted runs can surface environment differences.
+   - Mitigation: verify Actions results after push via `docs/DEVELOPMENT_COMMANDS.md` workflow.
 
 ## Deferred private-data risks
 
 1. **Historical rule corpus unavailable (`awaiting-private-rule-pack`)**
-   - Impact: harmony-rule correctness cannot be historically validated yet.
-   - Why not blocking now: current scope is scaffold, tooling, and documentation only.
-   - Mitigation: keep strict extension points and synthetic fixture strategy until private pack arrives.
+   - Impact: historically faithful harmony validation cannot be implemented yet.
+   - Why not blocking now: current work is infrastructure, shell UI, and settings scaffolding only.
+   - Mitigation: continue typed extension points and synthetic fixture strategy until private pack arrives.
 
-2. **Potential future mismatch between library assumptions and 31-EDO spelling**
-   - Impact: UI/audio libraries may flatten enharmonic identity if unguarded.
-   - Why not blocking now: no pitch processing logic is implemented yet.
-   - Mitigation: enforce explicit spelled-pitch domain contracts before integrating notation/audio adapters.
+2. **Potential library mismatch with 31-EDO spelling semantics**
+   - Impact: notation/audio adapters may flatten enharmonic identity if not guarded.
+   - Why not blocking now: no pitch computation/notation/audio rule engine has been integrated yet.
+   - Mitigation: add explicit spelled-pitch domain primitives and adapter conformance tests before integration.
