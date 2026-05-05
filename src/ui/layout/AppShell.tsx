@@ -6,9 +6,10 @@ import LayoutRegion from './LayoutRegion';
 
 type AppShellProps = {
   workspaceContent?: ReactNode;
+  inspectorContent?: ReactNode;
 };
 
-function AppShell({ workspaceContent }: AppShellProps) {
+function AppShell({ workspaceContent, inspectorContent }: AppShellProps) {
   useKeyboardShortcuts();
   const inspectorVisible = useAppStore(selectInspectorVisible);
 
@@ -43,7 +44,9 @@ function AppShell({ workspaceContent }: AppShellProps) {
             className="region inspector"
             title="Inspector"
             description="Right panel placeholder for context details, validation, and selection metadata."
-          />
+          >
+            {inspectorContent ?? <p>No selection data.</p>}
+          </LayoutRegion>
         ) : (
           <section className="region inspector" aria-label="Inspector hidden">
             <h2>Inspector hidden</h2>
