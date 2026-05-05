@@ -1,9 +1,14 @@
+import type { ReactNode } from 'react';
 import { useKeyboardShortcuts } from '../keyboard/useKeyboardShortcuts';
 import { selectInspectorVisible, useAppStore } from '../../state/useAppStore';
 import SettingsDebugPanel from '../settings/SettingsDebugPanel';
 import LayoutRegion from './LayoutRegion';
 
-function AppShell() {
+type AppShellProps = {
+  workspaceContent?: ReactNode;
+};
+
+function AppShell({ workspaceContent }: AppShellProps) {
   useKeyboardShortcuts();
   const inspectorVisible = useAppStore(selectInspectorVisible);
 
@@ -25,10 +30,12 @@ function AppShell() {
 
         <main className="region workspace" aria-label="Workspace">
           <h2>Workspace</h2>
-          <p>
-            Central notation-like editing and analysis canvas placeholder. Domain rules remain deferred as{' '}
-            <code>awaiting-private-rule-pack</code>.
-          </p>
+          {workspaceContent ?? (
+            <p>
+              Central notation-like editing and analysis canvas placeholder. Domain rules remain deferred as{' '}
+              <code>awaiting-private-rule-pack</code>.
+            </p>
+          )}
         </main>
 
         {inspectorVisible ? (

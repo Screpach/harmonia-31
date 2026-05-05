@@ -1,0 +1,15 @@
+.satb-grid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.satb-grid th,
+.satb-grid td {
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+}
+
+.satb-grid__help {
+  margin: 0.25rem 0 0.75rem;
+}
