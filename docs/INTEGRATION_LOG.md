@@ -119,3 +119,33 @@
 - Spelled-pitch identity remains explicit and non-collapsed in domain contracts/tests.
 - Project schema validation and migration hooks are runtime-safe and version-gated.
 - Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
+
+## 2026-05-05 — Integration Gate 05 (Prompts 21-24)
+
+### Scope audited
+- Command pattern foundation and history behavior.
+- Note insert/delete/update command handlers.
+- Selection model and reducer integration with app store.
+- Keyboard shortcut registry/hook and interaction safety rules.
+
+### Checks run
+- `npm ci`
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully with Harmonia 31 title and root mount.
+- No new product feature scope added in this integration gate.
+
+### Repairs made
+- Repaired shortcut editable-target guard so non-editable elements deterministically return `false`.
+- Added this gate entry and refreshed risks for interaction-layer readiness.
+
+### Contract integrity notes
+- Spelled-pitch identity remains explicit through note update command tests (`C#` vs `Db` not collapsed automatically).
+- Command handlers remain pure data transforms with no React/audio/render dependencies.
+- Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
