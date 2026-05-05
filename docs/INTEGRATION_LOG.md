@@ -59,3 +59,33 @@
 - State layer remains UI-settings-only; no score or musical truth added to state.
 - Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
 - 31-EDO spelled-pitch identity constraints remain documented in domain boundaries.
+
+## 2026-05-05 — Integration Gate 03 (Prompts 11-14)
+
+### Scope audited
+- 31-EDO constants and immutable keyboard mapping.
+- SpelledPitch identity, validation, parser, and formatter behavior.
+- Reference tuning and frequency conversion primitives.
+- Interval primitives (directed EDO steps, generic number, named interval structure).
+
+### Checks run
+- `npm ci`
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully with Harmonia 31 title and root mount.
+- No new product feature scope added in this integration gate.
+
+### Repairs made
+- No contract or code repairs were required.
+- Added this gate entry and refreshed known-risk tracking for domain foundations.
+
+### Contract integrity notes
+- Spelled-pitch identity remains first-class (`C#` and `Db` preserved as distinct spellings).
+- Frequency and interval primitives remain pure domain logic with no UI/audio adapter dependencies.
+- Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
