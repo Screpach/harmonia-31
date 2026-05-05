@@ -48,3 +48,9 @@ Purpose: shortlist permissive-license candidates without installing dependencies
 - Rule corpus integration remains `awaiting-private-rule-pack`.
 - Pitch spelling identity must remain in domain contracts, never inferred from UI/audio libraries.
 - Any library adoption prompt must include a proof that `C#` and `Db` remain distinct domain values.
+
+## Notation status update (2026-05-05)
+
+- Decision: keep the simple SATB grid through a `NotationAdapter` spike; no VexFlow/OSMD runtime integration yet.
+- Reason: preserve buildability and adapter boundaries while private-rule integration remains `awaiting-private-rule-pack`.
+- Next check: re-evaluate VexFlow and OSMD only when a second adapter prototype is requested.

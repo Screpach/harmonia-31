@@ -1,8 +1,8 @@
-import { formatPitch } from '../../domain/pitch/formatPitch';
 import { makeSpelledPitch } from '../../domain/pitch/SpelledPitch';
 import { normalizeRational } from '../../domain/duration/Rational';
 import { createEmptyProject } from '../../domain/score/createEmptyProject';
 import type { Project } from '../../domain/score/Project';
+import { simpleGridAdapter } from '../../render/adapters/simpleGridAdapter';
 import './SatbGrid.css';
 
 function createDemoProject(): Project {
@@ -40,45 +40,30 @@ function createDemoProject(): Project {
   };
 }
 
-function voiceMeasureText(project: Project, voiceId: (typeof project.score.voices)[number], measureId: string): string {
-  const measure = project.score.measures.find((candidate) => candidate.id === measureId);
-  if (!measure) {
-    return '—';
-  }
-
-  const events = measure.events.filter((event) => event.voiceId === voiceId);
-  if (events.length === 0) {
-    return 'rest';
-  }
-
-  return events
-    .map((event) => (event.kind === 'note' ? formatPitch(event.pitch, 'ascii') : 'rest'))
-    .join(', ');
-}
-
 function SatbGrid() {
   const project = createDemoProject();
+  const view = simpleGridAdapter.render(project);
 
   return (
     <section aria-label="SATB score grid" className="satb-grid">
       <h3>SATB Grid (placeholder renderer)</h3>
       <p className="satb-grid__help">Text-based pitch spellings are shown for accessibility and early integration.</p>
       <table>
-        <caption>{project.title}</caption>
+        <caption>{view.grid.title}</caption>
         <thead>
           <tr>
             <th scope="col">Voice</th>
-            {project.score.measures.map((measure) => (
-              <th key={measure.id} scope="col">Measure {measure.index + 1}</th>
+            {view.grid.measureHeaders.map((measure) => (
+              <th key={measure.id} scope="col">{measure.label}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {project.score.voices.map((voiceId) => (
-            <tr key={voiceId}>
-              <th scope="row">{voiceId}</th>
-              {project.score.measures.map((measure) => (
-                <td key={`${voiceId}-${measure.id}`}>{voiceMeasureText(project, voiceId, measure.id)}</td>
+          {view.grid.rows.map((row) => (
+            <tr key={row.voiceId}>
+              <th scope="row">{row.voiceId}</th>
+              {row.cells.map((cell) => (
+                <td key={`${cell.voiceId}-${cell.measureId}`}>{cell.text}</td>
               ))}
             </tr>
           ))}
