@@ -89,3 +89,33 @@
 - Spelled-pitch identity remains first-class (`C#` and `Db` preserved as distinct spellings).
 - Frequency and interval primitives remain pure domain logic with no UI/audio adapter dependencies.
 - Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
+
+## 2026-05-05 — Integration Gate 04 (Prompts 16-19)
+
+### Scope audited
+- SATB voice and range model defaults/check behavior.
+- Rational duration math normalization and operations.
+- Score entity model (Project/Score/Measure/Event) and empty project factory.
+- Runtime schema validation and migration skeleton for native project JSON.
+
+### Checks run
+- `npm ci`
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully with Harmonia 31 title and root mount.
+- No new product feature scope added in this integration gate.
+
+### Repairs made
+- No contract or code repairs were required.
+- Added this gate entry and refreshed risk tracking for data-integrity foundations.
+
+### Contract integrity notes
+- Spelled-pitch identity remains explicit and non-collapsed in domain contracts/tests.
+- Project schema validation and migration hooks are runtime-safe and version-gated.
+- Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
