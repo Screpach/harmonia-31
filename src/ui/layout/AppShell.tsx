@@ -7,9 +7,10 @@ import LayoutRegion from './LayoutRegion';
 type AppShellProps = {
   workspaceContent?: ReactNode;
   inspectorContent?: ReactNode;
+  keyboardContent?: ReactNode;
 };
 
-function AppShell({ workspaceContent, inspectorContent }: AppShellProps) {
+function AppShell({ workspaceContent, inspectorContent, keyboardContent }: AppShellProps) {
   useKeyboardShortcuts();
   const inspectorVisible = useAppStore(selectInspectorVisible);
 
@@ -60,7 +61,9 @@ function AppShell({ workspaceContent, inspectorContent }: AppShellProps) {
           className="region keyboard"
           title="Keyboard"
           description="On-screen keyboard placeholder for future audition and input mapping."
-        />
+        >
+          {keyboardContent ?? <p>Keyboard placeholder.</p>}
+        </LayoutRegion>
         <LayoutRegion
           className="region transport"
           title="Transport"
