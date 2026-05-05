@@ -1,9 +1,12 @@
 import type { Project } from '../../domain/score/Project';
+import type { Rect } from '../layout/LayoutTypes';
 
 export type GridCellView = {
   readonly voiceId: Project['score']['voices'][number];
   readonly measureId: string;
   readonly text: string;
+  readonly eventIds: readonly string[];
+  readonly bounds: Rect;
 };
 
 export type NotationGridView = {

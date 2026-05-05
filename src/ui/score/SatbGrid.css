@@ -13,3 +13,14 @@
 .satb-grid__help {
   margin: 0.25rem 0 0.75rem;
 }
+
+.satb-grid__selection {
+  display: inline-block;
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.2rem;
+}
+
+.satb-grid__selection--active {
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  outline: 1px solid var(--color-accent);
+}
