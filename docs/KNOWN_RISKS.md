@@ -32,6 +32,14 @@ Updated: 2026-05-05
    - Risk: current SATB selection mapping uses unit table-cell bounds, which may diverge from future pixel-precise notation engine geometry.
    - Mitigation: bind adapter hit targets to shared layout coordinates when richer SVG/canvas notation adapters are introduced.
 
+8. **Keyboard note entry currently ignores ↑/↓ spellings**
+   - Risk: one-step up/down key labels exist in the 31-EDO keyboard map, but the current note-entry loop intentionally no-ops those spellings.
+   - Mitigation: introduce a domain-level accidental/micro-step representation or explicit spelling-to-pitch adapter contract before enabling those keys for entry.
+
+9. **Diagnostic IDs use local deterministic hash only**
+   - Risk: diagnostic IDs are stable per payload locally but are not guaranteed globally unique across tools/services.
+   - Mitigation: adopt analyzer namespace prefixes or UUID-based IDs when cross-system diagnostic merging is introduced.
+
 ## Deferred private-data risks
 
 1. **Historical rule corpus unavailable (`awaiting-private-rule-pack`)**

@@ -177,3 +177,32 @@
 - Spelled-pitch identity remains intact in displayed synthetic notes (`C#4` and `Db4` both remain present in UI tests).
 - Selection interactions update UI state only; domain score data remains unchanged by click-selection behavior.
 - Deferred private corpus policy remains intact (`awaiting-private-rule-pack`).
+
+## 2026-05-05 — Integration Gate 07 (Prompts 31-34)
+
+### Scope audited
+- Inspector selectors and inspector panel data flow.
+- 31-EDO on-screen keyboard rendering and accessibility contract.
+- Keyboard note-entry command flow and history/project-store coherence.
+- Source-agnostic diagnostic model and provenance/location contracts.
+
+### Checks run
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview -- --host 127.0.0.1 --port 4173` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves and root HTML loads successfully.
+- No new product feature scope was added in this integration gate.
+
+### Repairs made
+- No contract or code repairs were required during this gate.
+- Added this gate entry and refreshed known-risk tracking for keyboard entry and diagnostics contracts.
+
+### Contract integrity notes
+- Spelled-pitch identity remains intact in keyboard entry tests (`C#` insert and `Db` update remain distinct).
+- Note-entry path continues to use command/history application rather than direct score mutation.
+- Diagnostic provenance remains source-agnostic with explicit support for `awaiting-private-rule-pack` and no historical claims.
