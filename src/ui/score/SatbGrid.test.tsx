@@ -39,4 +39,9 @@ describe('SatbGrid', () => {
     expect(screen.getByText('C#4')).toBeTruthy();
     expect(screen.getByText('Db4')).toBeTruthy();
   });
+  it('note with diagnostic receives accessible marker', () => {
+    render(<SatbGrid />);
+    expect(screen.getAllByLabelText('diagnostic marker').length).toBeGreaterThan(0);
+  });
+
 });
