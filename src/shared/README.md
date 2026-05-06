@@ -16,4 +16,4 @@ Small cross-cutting, framework-agnostic helpers and shared types.
 ## Notes
 
 - Keep helpers generic and dependency-light.
-- TODO: enforce these boundaries with ESLint import rules in a later prompt.
+- Boundary enforcement is currently social/documentation-based; consider future lint-based import constraints as a separate tracked task.
