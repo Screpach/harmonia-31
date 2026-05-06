@@ -6,12 +6,15 @@ import { voiceOrderRule } from '../../engine/rules/builtin/voiceOrderRule';
 import { simpleGridAdapter } from '../../render/adapters/simpleGridAdapter';
 import { hitTest, type HitTestTarget } from '../../render/hitTesting/hitTest';
 import { useProjectStore } from '../../state/projectStore';
+import { useTransportStore } from '../../state/transport/transportStore';
 import { selectSelectedEventIds, useAppStore } from '../../state/useAppStore';
+import PlaybackCursor from './PlaybackCursor';
 import SelectionOverlay from './SelectionOverlay';
 import './SatbGrid.css';
 
 function SatbGrid() {
   const project = useProjectStore((state) => state.history.present);
+  const currentBeat = useTransportStore((state) => state.currentBeat);
   const view = simpleGridAdapter.render(project);
   const analysis = useMemo(() => analyzeProject(project, [rangeRule, voiceOrderRule, createSpacingObservationRule(10)]), [project]);
   const selectedEventIds = useAppStore(selectSelectedEventIds);
@@ -22,6 +25,7 @@ function SatbGrid() {
     <section aria-label="SATB score grid" className="satb-grid">
       <h3>SATB Grid (placeholder renderer)</h3>
       <p className="satb-grid__help">Text-based pitch spellings are shown for accessibility and early integration.</p>
+      <PlaybackCursor currentBeat={currentBeat} />
       <table>
         <caption>{view.grid.title}</caption>
         <thead><tr><th scope="col">Voice</th>{view.grid.measureHeaders.map((measure) => <th key={measure.id} scope="col">{measure.label}</th>)}</tr></thead>

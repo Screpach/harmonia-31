@@ -1,7 +1,24 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useTransportStore } from '../../state/transport/transportStore';
 import TransportControls from './TransportControls';
+
+vi.mock('../../audio/tone/TonePlaybackAdapter', () => ({
+  TonePlaybackAdapter: class {
+    async unlock() {}
+    async playSchedule() {}
+    async stop() {}
+    async pause() {}
+    async resume() {}
+  },
+}));
+
+vi.mock('../../audio/playbackController', () => ({
+  createPlaybackController: () => ({
+    play: vi.fn(async () => {}),
+    stop: vi.fn(async () => {}),
+  }),
+}));
 
 describe('TransportControls', () => {
   afterEach(() => {
@@ -16,7 +33,7 @@ describe('TransportControls', () => {
     expect(() => useTransportStore.getState().setBpm(0)).toThrow('BPM must be a positive number.');
   });
 
-  it('buttons update transport state', () => {
+  it('buttons update transport state', async () => {
     render(<TransportControls />);
 
     fireEvent.click(screen.getByRole('button', { name: 'Play' }));
@@ -26,6 +43,7 @@ describe('TransportControls', () => {
     expect(useTransportStore.getState().status).toBe('paused');
 
     fireEvent.click(screen.getByRole('button', { name: 'Stop' }));
+    await Promise.resolve();
     expect(useTransportStore.getState().status).toBe('stopped');
   });
 
