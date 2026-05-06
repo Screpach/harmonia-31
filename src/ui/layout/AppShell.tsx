@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { useKeyboardShortcuts } from '../keyboard/useKeyboardShortcuts';
 import { selectInspectorVisible, useAppStore } from '../../state/useAppStore';
 import SettingsDebugPanel from '../settings/SettingsDebugPanel';
+import ProjectFileControls from '../file/ProjectFileControls';
 import LayoutRegion from './LayoutRegion';
 
 type AppShellProps = {
@@ -29,6 +30,7 @@ function AppShell({ workspaceContent, inspectorContent, keyboardContent, transpo
           description="Left panel placeholder for analysis, generation, and editing tools."
         >
           <SettingsDebugPanel />
+          <ProjectFileControls />
         </LayoutRegion>
 
         <main className="region workspace" aria-label="Workspace">

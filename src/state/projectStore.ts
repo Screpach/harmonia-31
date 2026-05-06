@@ -34,6 +34,7 @@ function persistProject(project: Project): void {
 type ProjectStore = {
   history: HistoryState;
   apply: (command: Command) => void;
+  replaceProject: (project: Project) => void;
   applyKeyboardPitch: (spelledPitch: { letter: 'A'|'B'|'C'|'D'|'E'|'F'|'G'; accidental: number; octave: number }, args: { activeVoice: 'soprano'|'alto'|'tenor'|'bass'; selectedEventId: string | null }) => void;
 };
 
@@ -43,6 +44,10 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
     const history = applyWithHistory(state.history, command);
     persistProject(history.present);
     return { history };
+  }),
+  replaceProject: (project) => set(() => {
+    persistProject(project);
+    return { history: createHistoryState(project) };
   }),
   applyKeyboardPitch: (spelledPitch, args) => {
     const history = get().history;
