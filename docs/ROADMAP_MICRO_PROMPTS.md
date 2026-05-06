@@ -5,8 +5,8 @@ This roadmap sequences small, reviewable prompts while private rule data is unav
 ## Phase 0: planning and contracts
 
 1. ✅ Repository charter and agent instructions.
-2. Define initial TypeScript workspace and package boundaries.
-3. Add domain primitives for 31-EDO spelled pitch identity.
+2. ✅ Define initial TypeScript workspace and package boundaries.
+3. ✅ Add domain primitives for 31-EDO spelled pitch identity.
 4. Add adapter contracts for rendering/audio/storage.
 5. Integration gate: verify docs, contracts, and build integrity only.
 
