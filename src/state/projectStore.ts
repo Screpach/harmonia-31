@@ -3,6 +3,7 @@ import type { Project } from '../domain/score/Project';
 import { normalizeRational } from '../domain/duration/Rational';
 import { makeSpelledPitch } from '../domain/pitch/SpelledPitch';
 import { createEmptyProject } from '../domain/score/createEmptyProject';
+import { createBrowserProjectStorage } from '../persistence/local/projectStorage';
 import type { Command, InsertNoteCommand, UpdateNotePitchCommand } from './commands/Command';
 import { applyWithHistory, createHistoryState, type HistoryState } from './commands/history';
 
@@ -17,6 +18,19 @@ function initialProject(): Project {
   };
 }
 
+
+const projectStorage = createBrowserProjectStorage();
+
+function loadInitialProject(): Project {
+  return projectStorage.load() ?? initialProject();
+}
+
+let persistTimeout: ReturnType<typeof setTimeout> | null = null;
+
+function persistProject(project: Project): void {
+  if (persistTimeout) clearTimeout(persistTimeout);
+  persistTimeout = setTimeout(() => projectStorage.save(project), 120);
+}
 type ProjectStore = {
   history: HistoryState;
   apply: (command: Command) => void;
@@ -24,8 +38,12 @@ type ProjectStore = {
 };
 
 export const useProjectStore = create<ProjectStore>((set, get) => ({
-  history: createHistoryState(initialProject()),
-  apply: (command) => set((state) => ({ history: applyWithHistory(state.history, command) })),
+  history: createHistoryState(loadInitialProject()),
+  apply: (command) => set((state) => {
+    const history = applyWithHistory(state.history, command);
+    persistProject(history.present);
+    return { history };
+  }),
   applyKeyboardPitch: (spelledPitch, args) => {
     const history = get().history;
     const measureId = history.present.score.measures[0]?.id ?? 'm1';
@@ -47,6 +65,10 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
           duration: normalizeRational({ numerator: 1, denominator: 4 }),
           pitch: makeSpelledPitch(spelledPitch),
         };
-    set((state) => ({ history: applyWithHistory(state.history, command) }));
+    set((state) => {
+      const history = applyWithHistory(state.history, command);
+      persistProject(history.present);
+      return { history };
+    });
   },
 }));
