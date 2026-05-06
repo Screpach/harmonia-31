@@ -10,7 +10,7 @@ function ExampleProjectPicker() {
       <ul>
         {SYNTHETIC_EXAMPLE_PROJECTS.map((example) => (
           <li key={example.id}>
-            <button type="button" onClick={() => replaceProject(example.project)}>{example.label}</button>
+            <button type="button" aria-label={`Load ${example.label}`} onClick={() => replaceProject(example.project)}>{example.label}</button>
             <p>{example.description}</p>
           </li>
         ))}

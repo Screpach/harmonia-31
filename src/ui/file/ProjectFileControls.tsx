@@ -22,7 +22,7 @@ function ProjectFileControls() {
 
   return (
     <section aria-label="Project file controls">
-      <button type="button" onClick={handleExport}>Export JSON</button>
+      <button type="button" aria-label="Export JSON" onClick={handleExport}>Export JSON</button>
       <label>
         Import JSON
         <input
