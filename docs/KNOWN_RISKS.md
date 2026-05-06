@@ -1,6 +1,6 @@
 # Known Risks
 
-Updated: 2026-05-05
+Updated: 2026-05-06
 
 ## Current integration baseline risks
 
@@ -47,6 +47,14 @@ Updated: 2026-05-05
 11. **Deterministic ordering policy may need explicit versioning**
    - Risk: sorting by first location/severity/id is stable now but may produce unexpected order changes if location semantics expand.
    - Mitigation: version and test ordering policy explicitly before introducing multi-location prioritization or plugin weighting.
+
+12. **Deterministic generator is intentionally narrow**
+   - Risk: `generateFromFixedVoice` currently derives placeholder notes via fixed octave offsets from one active-voice note and is not musically authoritative.
+   - Mitigation: replace with configurable search strategy once rule/chord packs and richer motion constraints are available.
+
+13. **Generation scoring omits temporal small-motion context**
+   - Risk: current scoring checks hard range and voice order only at a single onset; it does not evaluate stepwise motion over time.
+   - Mitigation: add cross-event transition scoring once multi-event generation windows are introduced.
 
 ## Deferred private-data risks
 

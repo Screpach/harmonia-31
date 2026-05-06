@@ -235,3 +235,33 @@
 - Mechanical validators remain source-agnostic and do not embed historical rule content.
 - Analysis runner behavior remains deterministic with stable diagnostic ordering and controlled plugin error capture.
 - Deferred private-data pathway remains explicit via `awaiting-private-rule-pack` statuses and provenance.
+
+
+## 2026-05-06 — Integration Gate 09 (Prompts 40-44)
+
+### Scope audited
+- Synthetic chord-kind schema and recognition contracts.
+- Generation request/candidate/result type contracts and serialization safety.
+- Tiny deterministic `generateFromFixedVoice` stub and mechanical scoring diagnostics.
+- Provisional explanation and deferred private-data signaling (`awaiting-private-rule-pack`).
+
+### Checks run
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview -- --host 127.0.0.1 --port 4173` and local HTTP HEAD request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully and root HTML loads.
+- No new feature scope was introduced beyond integration verification and documentation updates.
+
+### Repairs made
+- No contract or code repairs were required during this gate.
+- Added this gate entry and refreshed known-risk tracking for deterministic generation/scoring limitations.
+
+### Contract integrity notes
+- Spelled-pitch identity remains intact in generation fixtures (`C#` accidental preserved across generated voices) and chord recognition outputs keep spelled objects intact.
+- Generation contracts continue to require explicit explanations and source-agnostic rejection metadata.
+- Deferred private corpus policy remains explicit (`awaiting-private-rule-pack`) with no historical claims embedded in logic.
