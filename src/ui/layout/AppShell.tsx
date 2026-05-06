@@ -3,6 +3,7 @@ import { useKeyboardShortcuts } from '../keyboard/useKeyboardShortcuts';
 import { selectInspectorVisible, useAppStore } from '../../state/useAppStore';
 import SettingsDebugPanel from '../settings/SettingsDebugPanel';
 import ProjectFileControls from '../file/ProjectFileControls';
+import ExampleProjectPicker from '../examples/ExampleProjectPicker';
 import LayoutRegion from './LayoutRegion';
 
 type AppShellProps = {
@@ -31,6 +32,7 @@ function AppShell({ workspaceContent, inspectorContent, keyboardContent, transpo
         >
           <SettingsDebugPanel />
           <ProjectFileControls />
+          <ExampleProjectPicker />
         </LayoutRegion>
 
         <main className="region workspace" aria-label="Workspace">
