@@ -1,0 +1,30 @@
+.edo31-keyboard__keys {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.edo31-keyboard__key {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 0.35rem 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edo31-keyboard__key:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.edo31-keyboard__spelling {
+  font-weight: 600;
+}
+
+.edo31-keyboard__step {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
