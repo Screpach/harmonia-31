@@ -56,6 +56,18 @@ Updated: 2026-05-06
    - Risk: current scoring checks hard range and voice order only at a single onset; it does not evaluate stepwise motion over time.
    - Mitigation: add cross-event transition scoring once multi-event generation windows are introduced.
 
+14. **Pause state is UI-level only in current playback loop**
+   - Risk: transport `paused` status does not yet invoke adapter-level pause/resume semantics, so user expectation may diverge from actual audio transport behavior.
+   - Mitigation: wire pause/resume through `PlaybackAdapter` with deterministic state transitions and tests before broader playback rollout.
+
+15. **Playback cursor is currently beat-relative, not layout-time accurate**
+   - Risk: cursor marker uses a simple beat modulo projection and does not yet align to exact rendered cell geometry across multi-measure layouts.
+   - Mitigation: bind cursor position to shared render layout coordinates and measure timeline metadata in a follow-up prompt.
+
+16. **Main bundle size increased after audio integration**
+   - Risk: Vite reports a chunk-size warning (>500 kB), which can impact initial load performance on slow networks/devices.
+   - Mitigation: evaluate code-splitting/lazy-loading for audio adapters and non-critical UI paths after transport behavior stabilizes.
+
 ## Deferred private-data risks
 
 1. **Historical rule corpus unavailable (`awaiting-private-rule-pack`)**

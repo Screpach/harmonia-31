@@ -265,3 +265,34 @@
 - Spelled-pitch identity remains intact in generation fixtures (`C#` accidental preserved across generated voices) and chord recognition outputs keep spelled objects intact.
 - Generation contracts continue to require explicit explanations and source-agnostic rejection metadata.
 - Deferred private corpus policy remains explicit (`awaiting-private-rule-pack`) with no historical claims embedded in logic.
+
+
+## 2026-05-06 — Integration Gate 10 (Prompts 46-49)
+
+### Scope audited
+- Audio schedule contract (`createAudioSchedule`) and spelled-pitch-to-frequency mapping behavior.
+- Tone.js playback adapter boundary and mocked test path behavior.
+- Transport store/control wiring and playback controller orchestration.
+- SATB playback cursor sync against transport beat updates.
+- Browser-safe behavior (no autoplay without explicit play action).
+
+### Checks run
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview -- --host 127.0.0.1 --port 4173` and local HTTP HEAD request.
+
+### Result
+- All automated checks passed.
+- Preview shell serves successfully (`HTTP 200`) and app root loads.
+- No new feature scope added beyond integration validation and documentation updates.
+
+### Repairs made
+- No contract or code repairs were required in this gate.
+- Added this integration entry and refreshed known-risk tracking for playback lifecycle/cursor limitations.
+
+### Contract integrity notes
+- Playback path remains frequency-first; no canonical MIDI note-name model introduced.
+- Spelled-pitch identity remains preserved upstream and flows into distinct frequency scheduling behavior.
+- Deferred private corpus policy remains explicit (`awaiting-private-rule-pack`) and non-blocking for current audio/transport scope.
