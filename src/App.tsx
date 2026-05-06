@@ -2,6 +2,7 @@ import AppShell from './ui/layout/AppShell';
 import InspectorPanel from './ui/inspector/InspectorPanel';
 import Edo31Keyboard from './ui/keyboard/Edo31Keyboard';
 import SatbGrid from './ui/score/SatbGrid';
+import TransportControls from './ui/transport/TransportControls';
 import { useAppStore } from './state/useAppStore';
 import { useProjectStore } from './state/projectStore';
 
@@ -23,7 +24,7 @@ function App() {
     const pitch = toSpelledPitch(spelling);
     if (!pitch) return;
     applyKeyboardPitch(pitch, { activeVoice, selectedEventId });
-  }} />} />;
+  }} />} transportContent={<TransportControls />} />;
 }
 
 export default App;

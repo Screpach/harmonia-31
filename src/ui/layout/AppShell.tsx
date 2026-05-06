@@ -8,9 +8,10 @@ type AppShellProps = {
   workspaceContent?: ReactNode;
   inspectorContent?: ReactNode;
   keyboardContent?: ReactNode;
+  transportContent?: ReactNode;
 };
 
-function AppShell({ workspaceContent, inspectorContent, keyboardContent }: AppShellProps) {
+function AppShell({ workspaceContent, inspectorContent, keyboardContent, transportContent }: AppShellProps) {
   useKeyboardShortcuts();
   const inspectorVisible = useAppStore(selectInspectorVisible);
 
@@ -68,7 +69,9 @@ function AppShell({ workspaceContent, inspectorContent, keyboardContent }: AppSh
           className="region transport"
           title="Transport"
           description="Playback transport placeholder for start, stop, tempo, and loop controls."
-        />
+        >
+          {transportContent ?? <p>Transport controls placeholder.</p>}
+        </LayoutRegion>
       </div>
     </div>
   );
