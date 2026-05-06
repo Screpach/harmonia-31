@@ -206,3 +206,32 @@
 - Spelled-pitch identity remains intact in keyboard entry tests (`C#` insert and `Db` update remain distinct).
 - Note-entry path continues to use command/history application rather than direct score mutation.
 - Diagnostic provenance remains source-agnostic with explicit support for `awaiting-private-rule-pack` and no historical claims.
+
+## 2026-05-06 — Integration Gate 08 (Prompts 36-39)
+
+### Scope audited
+- Rule plugin interfaces and registry execution semantics.
+- Builtin mechanical validators (range, voice order, spacing heuristic).
+- Deterministic analysis runner and analysis selectors.
+- Inspector diagnostic list and SATB event-level diagnostic annotations.
+
+### Checks run
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+- Manual preview smoke check via `npm run preview -- --host 127.0.0.1 --port 4173` and local HTTP request.
+
+### Result
+- All automated checks passed.
+- Preview shell still serves successfully and root HTML loads.
+- No new feature scope beyond audited analyzer/diagnostic work was added in this gate.
+
+### Repairs made
+- No contract or code repairs were required during this gate.
+- Added this gate entry and refreshed known-risk tracking for analyzer UI coupling and diagnostic ordering policy.
+
+### Contract integrity notes
+- Mechanical validators remain source-agnostic and do not embed historical rule content.
+- Analysis runner behavior remains deterministic with stable diagnostic ordering and controlled plugin error capture.
+- Deferred private-data pathway remains explicit via `awaiting-private-rule-pack` statuses and provenance.

@@ -40,6 +40,14 @@ Updated: 2026-05-05
    - Risk: diagnostic IDs are stable per payload locally but are not guaranteed globally unique across tools/services.
    - Mitigation: adopt analyzer namespace prefixes or UUID-based IDs when cross-system diagnostic merging is introduced.
 
+10. **Analysis currently runs separately in multiple UI components**
+   - Risk: SatbGrid and Inspector each run analysis for the same project snapshot, which can duplicate compute and drift in future configuration changes.
+   - Mitigation: centralize analysis execution behind a shared selector/store memo path with explicit plugin configuration.
+
+11. **Deterministic ordering policy may need explicit versioning**
+   - Risk: sorting by first location/severity/id is stable now but may produce unexpected order changes if location semantics expand.
+   - Mitigation: version and test ordering policy explicitly before introducing multi-location prioritization or plugin weighting.
+
 ## Deferred private-data risks
 
 1. **Historical rule corpus unavailable (`awaiting-private-rule-pack`)**
